@@ -1,8 +1,6 @@
 'use-client'
-// import logo from './logo.svg';
 import React from 'react'
 import strava_btn from './strava-orange.svg';
-// import strava_horiz from './logo-horiz.svg';
 import './App.css';
 
 function Home() {
@@ -21,8 +19,8 @@ function Home() {
   };
 
   const switchWindow = () => {
-    const url = url + "/instructions";
-    window.location.href = url
+    const newUrl = url + "instructions";
+    window.location.href = newUrl
   };
 
   return (
