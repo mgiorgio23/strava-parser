@@ -6,6 +6,8 @@ import strava_btn from './strava-orange.svg';
 import './App.css';
 
 function Home() {
+  let url = window.location.href;
+
   const sendRequest = () => {
     fetch("https://www.strava.com/api/v3/athlete",
       {
@@ -19,7 +21,7 @@ function Home() {
   };
 
   const switchWindow = () => {
-    const url ="http://localhost:3000/instructions";
+    const url = url + "/instructions";
     window.location.href = url
   };
 
