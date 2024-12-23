@@ -47,6 +47,11 @@ function Instructions() {
     .then(data => {
       getData(data.access_token)
     })
+    .then(()=>{
+      const url = new URL(window.location.href);
+      const baseUrl = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
+      window.location.href = baseUrl + '/results'
+    })
     .catch(err => console.error('Error:', err));
   }
 

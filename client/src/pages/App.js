@@ -1,10 +1,19 @@
 'use-client'
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import strava_btn from './strava-orange.svg';
 import './App.css';
 
 function Home() {
   let url = window.location.href;
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    console.log("useEFFECT")
+    fetch('/api')
+      .then(response => response.json())
+      .then(data => {setData(data);
+      console.log(data)});
+  }, []);
 
   const sendRequest = () => {
     fetch("https://www.strava.com/api/v3/athlete",
