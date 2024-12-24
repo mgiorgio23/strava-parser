@@ -121,73 +121,73 @@ app.post('/activities', async (req, res) => {
   }
 });
 
-app.get('/activities', async (req, res) => {
-  const {
-    startDate,
-    endDate,
-    type,
-    minDistance,
-    maxDistance,
-    minElevation,
-    maxElevation
-  } = req.query;
+// app.get('/activities', async (req, res) => {
+//   const {
+//     startDate,
+//     endDate,
+//     type,
+//     minDistance,
+//     maxDistance,
+//     minElevation,
+//     maxElevation
+//   } = req.query;
 
-  let query = `
-    SELECT * FROM activities
-    WHERE 1=1
-  `;
-  const queryParams = [];
+//   let query = `
+//     SELECT * FROM activities
+//     WHERE 1=1
+//   `;
+//   const queryParams = [];
 
-  // Add filters based on query parameters
-  if (athlete_id) {
-    queryParams.push(athlete_id);
-    query += ` AND athlete_id = $${queryParams.length}`
-  }
-  if (startDate) {
-    queryParams.push(startDate);
-    query += ` AND start_date >= $${queryParams.length}`;
-  }
+//   // Add filters based on query parameters
+//   if (athlete_id) {
+//     queryParams.push(athlete_id);
+//     query += ` AND athlete_id = $${queryParams.length}`
+//   }
+//   if (startDate) {
+//     queryParams.push(startDate);
+//     query += ` AND start_date >= $${queryParams.length}`;
+//   }
 
-  if (endDate) {
-    queryParams.push(endDate);
-    query += ` AND start_date <= $${queryParams.length}`;
-  }
+//   if (endDate) {
+//     queryParams.push(endDate);
+//     query += ` AND start_date <= $${queryParams.length}`;
+//   }
 
-  if (type) {
-    queryParams.push(type);
-    query += ` AND type = $${queryParams.length}`;
-  }
+//   if (type) {
+//     queryParams.push(type);
+//     query += ` AND type = $${queryParams.length}`;
+//   }
 
-  if (minDistance) {
-    queryParams.push(minDistance);
-    query += ` AND distance >= $${queryParams.length}`;
-  }
+//   if (minDistance) {
+//     queryParams.push(minDistance);
+//     query += ` AND distance >= $${queryParams.length}`;
+//   }
 
-  if (maxDistance) {
-    queryParams.push(maxDistance);
-    query += ` AND distance <= $${queryParams.length}`;
-  }
+//   if (maxDistance) {
+//     queryParams.push(maxDistance);
+//     query += ` AND distance <= $${queryParams.length}`;
+//   }
 
-  if (minElevation) {
-    queryParams.push(minElevation);
-    query += ` AND total_elevation_gain >= $${queryParams.length}`;
-  }
+//   if (minElevation) {
+//     queryParams.push(minElevation);
+//     query += ` AND total_elevation_gain >= $${queryParams.length}`;
+//   }
 
-  if (maxElevation) {
-    queryParams.push(maxElevation);
-    query += ` AND total_elevation_gain <= $${queryParams.length}`;
-  }
+//   if (maxElevation) {
+//     queryParams.push(maxElevation);
+//     query += ` AND total_elevation_gain <= $${queryParams.length}`;
+//   }
 
-  try {
-    const client = await pool.connect();
-    const result = await client.query(query, queryParams);
-    client.release();
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error('Error fetching activities:', err.message);
-    res.status(500).send('Server Error');
-  }
-});
+//   try {
+//     const client = await pool.connect();
+//     const result = await client.query(query, queryParams);
+//     client.release();
+//     res.status(200).json(result.rows);
+//   } catch (err) {
+//     console.error('Error fetching activities:', err.message);
+//     res.status(500).send('Server Error');
+//   }
+// });
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
