@@ -32,7 +32,6 @@ function Instructions() {
             const response = await fetch(`${apiUrl}/activities`, {
               method: 'POST',
               headers: {
-                'Access-Control-Allow-Origin':'*',
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
               },
