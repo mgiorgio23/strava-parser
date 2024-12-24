@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.use(express.json({limit:'1000mb'}));
+app.use(express.json());
 app.use(cors());
 app.set('view engine','ejs')
 
@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
       console.log(`Server listening on port ${PORT}`);
     });
   }
-  
+
  module.exports = app
 
 
