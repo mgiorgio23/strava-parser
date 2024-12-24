@@ -1,12 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "server.js", "use": "@vercel/node" },
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
   "routes": [
     { "src": "/",
-     "dest": "/api/$1.js",
+     "dest": "/api/*.js",
       "headers": {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "https://strava-client.vercel.app",
