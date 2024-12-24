@@ -10,6 +10,10 @@ function Instructions() {
   const [refresh, setRefresh] = useState("");
   const [code, setCode] = useState("");
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  console.log(apiUrl)
+
   const getTokens = (cID) => {
     window.open(`https://www.strava.com/oauth/authorize?client_id=${cID}&redirect_uri=http://localhost&response_type=code&scope=activity:read_all`, '_blank');
   };
@@ -22,10 +26,12 @@ function Instructions() {
       .then(data => {
         // console.log("DATA", JSON.stringify(data));
       // sessionStorage.setItem('activities', JSON.stringify(data))
-        return fetch('/activities', {
+      console.log(`${apiUrl}/activities`)
+        return fetch(`${apiUrl}/activities`, {
           method: 'POST',
           headers: {
             'Accept':'application/json, text/plain, */*',
+            'Access-Control-Allow-Origin':'*',
             'Content-Type':'application/json',
           },
           body: JSON.stringify(data)
@@ -69,7 +75,7 @@ function Instructions() {
     const payload = { id:'Test', refresh: 'TEster' }
     // console.log(payload)
 
-    fetch('/users', {
+    fetch(`${apiUrl}/users`, {
       method:'POST',
       headers: {
         'Accept':'application/json, text/plain, */*',

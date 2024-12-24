@@ -1,8 +1,8 @@
 {
   "name": "strava-parser",
   "version": "0.1.0",
-  "proxy":"http://localhost:3001",
   "private": true,
+  "proxy":"http://localhost:3001",
   "dependencies": {
     "cra-template": "1.2.0",
     "crypto-browserify": "^3.12.1",
