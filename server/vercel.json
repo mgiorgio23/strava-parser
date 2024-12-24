@@ -4,7 +4,7 @@
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/",
+    { "src": "/api/(.*)",
      "dest": "/api/*.js",
       "headers": {
         "Content-Type": "application/json",
@@ -13,6 +13,5 @@
         "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
       } 
     }
-   
   ]
 }
