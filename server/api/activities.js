@@ -84,27 +84,28 @@ router.post('/', async (req, res) => {
   });
 
 router.get('/', async (req, res) => {
+    console.log(req.query)
     const {
-    startDate,
-    endDate,
-    type,
-    minDistance,
-    maxDistance,
-    minElevation,
-    maxElevation
+      startDate,
+      endDate,
+      type,
+      minDist,
+      maxDist,
+      minElev,
+      maxElev
     } = req.query;
 
     let query = `
-    SELECT * FROM activities
+    SELECT * FROM "Activities"
     WHERE 1=1
     `;
     const queryParams = [];
 
     // Add filters based on query parameters
-    if (athlete_id) {
-    queryParams.push(athlete_id);
-    query += ` AND athlete_id = $${queryParams.length}`
-    }
+    // if (athlete_id) {
+    // queryParams.push(athlete_id);
+    // query += ` AND athlete_id = $${queryParams.length}`
+    // }
 
     if (startDate) {
     queryParams.push(startDate);
@@ -121,23 +122,23 @@ router.get('/', async (req, res) => {
     query += ` AND type = $${queryParams.length}`;
     }
 
-    if (minDistance) {
-    queryParams.push(minDistance);
+    if (minDist) {
+    queryParams.push(minDist);
     query += ` AND distance >= $${queryParams.length}`;
     }
 
-    if (maxDistance) {
-    queryParams.push(maxDistance);
+    if (maxDist) {
+    queryParams.push(maxDist);
     query += ` AND distance <= $${queryParams.length}`;
     }
 
-    if (minElevation) {
-    queryParams.push(minElevation);
+    if (minElev) {
+    queryParams.push(minElev);
     query += ` AND total_elevation_gain >= $${queryParams.length}`;
     }
 
-    if (maxElevation) {
-    queryParams.push(maxElevation);
+    if (maxElev) {
+    queryParams.push(maxElev);
     query += ` AND total_elevation_gain <= $${queryParams.length}`;
     }
 
