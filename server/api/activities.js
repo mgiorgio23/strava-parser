@@ -1,26 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
-const { Pool } = require('pg');
+const pool = require('../db');
 
-// app.use(express.json({limit:'50mb'}));
-
-// Configure the connection pool
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'strava',
-  password: 'stravadb',
-  port: 5432, 
-});
-
-// router.get('/', (req,res) => {
-//     res.send("HERE")
-// })
 
 router.post('/', async (req, res) => {
     const client = await pool.connect();
-    console.log("HERE")
+    console.log(req.body.length)
     try {
       await client.query('BEGIN');
   
@@ -78,6 +64,7 @@ router.post('/', async (req, res) => {
         );
       }
       await client.query('COMMIT');
+      res.status(200).send("Data Saved")
     } catch (err) {
       await client.query('ROLLBACK');
       console.error(err.message);

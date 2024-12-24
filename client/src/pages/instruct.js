@@ -24,22 +24,40 @@ function Instructions() {
     fetch(act_link)
       .then((res) => res.json())
       .then(data => {
-        // console.log("DATA", JSON.stringify(data));
-      // sessionStorage.setItem('activities', JSON.stringify(data))
-      console.log(`${apiUrl}/activities`)
-        return fetch(`${apiUrl}/activities`, {
-          method: 'POST',
-          headers: {
-            'Accept':'application/json, text/plain, */*',
-            'Access-Control-Allow-Origin':'*',
-            'Content-Type':'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      }).then(res => res.json())
-      // .then(res=>console.log("DONE", res))
-      .catch(err => console.error('Error setting data:', err))
-    };
+        const chunkSize = 20; 
+        const totalChunks = Math.ceil(data.length / chunkSize);
+        console.log(totalChunks)
+        const sendChunk = async (chunk, index) => {
+          try {
+            const response = await fetch(`${apiUrl}/activities`, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(chunk)
+            });
+            console.log("HERE")
+            if (!response.ok) {
+              throw new Error(`Failed to send chunk ${index + 1}`);
+            }
+            console.log(`Chunk ${index + 1} sent successfully`);
+          } catch (error) {
+            console.error(`Error sending chunk ${index + 1}:`, error);
+            // Optionally implement retry logic here
+          }
+        };
+        (async () => {
+          for (let i = 0; i < totalChunks; i++) {
+            const chunk = data.slice(i * chunkSize, (i + 1) * chunkSize);
+            console.log(chunk)
+            await sendChunk(chunk, i);
+            console.log("SENT")
+          }
+        })();
+        }).then(res => console.log(res))
+        .catch(err => console.error('Error setting data:', err))
+      };
 
   const reAuthorize = () => {
     const authUrl = "https://www.strava.com/oauth/token";

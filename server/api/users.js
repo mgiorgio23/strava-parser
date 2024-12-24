@@ -1,22 +1,8 @@
 const express = require("express");
 
 const router = express.Router();
-const { Pool } = require('pg');
+const pool = require('../db');
 
-// app.use(express.json({limit:'50mb'}));
-
-// Configure the connection pool
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'strava',
-  password: 'stravadb',
-  port: 5432, 
-});
-
-// router.get('/', (req,res) => {
-//     res.send("HERE USer")
-// });
 
 router.get('/', async (req, res) => {
     try {
