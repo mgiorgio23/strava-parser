@@ -119,7 +119,6 @@ function Instructions() {
       method: 'POST',
       headers: {
           'Accept':'application/json',
-          'Access-Control-Allow-Origin':'*',
           'Content-Type':'application/json',
           'Authorization':"0f60886862e5285a5a8c04bd69e6748af3490976"
       },

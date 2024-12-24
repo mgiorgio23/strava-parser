@@ -4,6 +4,7 @@ const router = express.Router();
 const pool = require('../db');
 
 router.options('/', (req, res) => {
+  console.log("IN OPTIONS");
     res.set('Access-Control-Allow-Origin', '*'); // Adjust as needed
     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
