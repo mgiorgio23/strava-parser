@@ -7,6 +7,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.options('*', cors());
 app.set('view engine','ejs')
 
 const userRouter = require('./api/users');
