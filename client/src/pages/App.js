@@ -7,13 +7,13 @@ function Home() {
   let url = window.location.href;
   const [data, setData] = useState([])
 
-  useEffect(() => {
-    console.log("useEFFECT")
-    fetch('/api')
-      .then(response => response.json())
-      .then(data => {setData(data);
-      console.log(data)});
-  }, []);
+  // useEffect(() => {
+  //   console.log("useEFFECT")
+  //   fetch('/users')
+  //     .then(response => response.json())
+  //     .then(data => {setData(data);
+  //     console.log(data)});
+  // }, []);
 
   const sendRequest = () => {
     fetch("https://www.strava.com/api/v3/athlete",

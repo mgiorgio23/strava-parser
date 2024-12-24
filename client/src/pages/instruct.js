@@ -19,11 +19,21 @@ function Instructions() {
   
     fetch(act_link)
       .then((res) => res.json())
-      .then(data => {console.log(data)
-        // console.log(data[0]["map"]["summary_polyline"])
-      sessionStorage.setItem('activities', JSON.stringify(data))})
-      .catch(err => console.error('Error getting data:', err))
-  };
+      .then(data => {
+        // console.log("DATA", JSON.stringify(data));
+      // sessionStorage.setItem('activities', JSON.stringify(data))
+        return fetch('/activities', {
+          method: 'POST',
+          headers: {
+            'Accept':'application/json, text/plain, */*',
+            'Content-Type':'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      }).then(res => res.json())
+      // .then(res=>console.log("DONE", res))
+      .catch(err => console.error('Error setting data:', err))
+    };
 
   const reAuthorize = () => {
     const authUrl = "https://www.strava.com/oauth/token";
@@ -34,7 +44,7 @@ function Instructions() {
       refresh_token: "998d549eaca092e97a37e3d2164d2116d3219e5a",
       grant_type: "refresh_token",
     };
-    console.log(payload);
+    // console.log(payload);
     fetch(authUrl, {
       method:'POST',
       headers: {
@@ -50,9 +60,24 @@ function Instructions() {
     .then(()=>{
       const url = new URL(window.location.href);
       const baseUrl = `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}`;
-      window.location.href = baseUrl + '/results'
+      // window.location.href = baseUrl + '/results'
     })
     .catch(err => console.error('Error:', err));
+  };
+
+  const addUser = () => {
+    const payload = { id:'Test', refresh: 'TEster' }
+    // console.log(payload)
+
+    fetch('/users', {
+      method:'POST',
+      headers: {
+        'Accept':'application/json, text/plain, */*',
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {return response.json()})
   }
 
   const getRefresh = () => {
@@ -77,12 +102,12 @@ function Instructions() {
       body: JSON.stringify(payload)
     })
     .then(response => response.json())
-    .then(data => console.log(data))    
+    // .then(data => console.log(data))    
   };
 
   const getStoredData = () => {
     const value = sessionStorage.getItem('activities');
-    console.log(JSON.parse(value))
+    // console.log(JSON.parse(value))
   };
 
   return (
@@ -115,7 +140,6 @@ function Instructions() {
           4. Collect the data:
         </p>
         <button type="submit" onClick={reAuthorize}> Get Data</button>
-        <button type="submit" onClick={getStoredData}> Get Stored Data</button>
         {/* TODO: Change the target to same page if successful collection of data */}
 
       </header>

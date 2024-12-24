@@ -5,16 +5,8 @@ import './App.css';
 export default function Results() {
     let url = window.location.href;
 
-    const sendRequest = () => {
-    fetch("https://www.strava.com/api/v3/athlete",
-        {
-            method: "GET",
-            headers: {
-            "Authorization": "Bearer 8cb4d4d5586ecb088e2ccc0ed234740ec9b167da",
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+    const filterResults = () => {
+        fetch('/activities')
     };
 
     const switchWindow = () => {
@@ -32,6 +24,8 @@ export default function Results() {
             <button type="submit" > Step 1</button>
         </form>
         <button onClick={switchWindow} > Instructions</button>
+        
+        <button type="submit" onClick={filterResults}> Get Stored Data</button>
         
         </header>
     </div>
