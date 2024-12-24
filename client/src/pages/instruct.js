@@ -87,7 +87,7 @@ function Instructions() {
     const payload = {
       client_id: 143040,
       client_secret: "aba2ae5a34d514c6c4cfb0dd5f91257e01221bf6",
-      code: "91afe9a6e355884edb0262e91300b3257ea46c36",
+      code: code,
       grant_type: "authorization_code",
     };
 
@@ -102,7 +102,7 @@ function Instructions() {
       body: JSON.stringify(payload)
     })
     .then(response => response.json())
-    // .then(data => console.log(data))    
+    .then(data => console.log(data))    
   };
 
   const getStoredData = () => {
