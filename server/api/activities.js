@@ -3,6 +3,12 @@ const express = require("express");
 const router = express.Router();
 const pool = require('../db');
 
+router.options('/', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*'); // Adjust as needed
+    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.sendStatus(204); // No Content
+  });
 
 router.post('/', async (req, res) => {
     const client = await pool.connect();
