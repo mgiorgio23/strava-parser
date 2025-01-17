@@ -38,9 +38,15 @@ app.use('/users', userRouter);
 app.use('/activities', activityRouter);
 app.use('/analyze', analysisRouter);
 
-app.get("/", (req, res) => {
-    res.json({ message: "Hello from Express!" });
-  });
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../client/build/index.html"),
+    function(err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  )});
 
   // if (process.env.NODE_ENV !== 'production') {
   //   app.listen(PORT, () => {
