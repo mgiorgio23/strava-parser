@@ -39,9 +39,11 @@ app.use('/users', userRouter);
 app.use('/activities', activityRouter);
 app.use('/analyze', analysisRouter);
 
-const _dirname = path.dirname("");
-const buildPath = path.join(_dirname, "../../client/build");
+
+const buildPath = path.join(__dirname, "../../client/build");
+console.log(buildPath);
 app.use(express.static(buildPath));
+console.log(path.join(__dirname, "../../client/build/index.html"));
 
 app.get("/*", function (req, res) {
   res.sendFile(
