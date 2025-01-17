@@ -58,13 +58,13 @@ router.post('/', async (req, res) => {
             athlete.id,
             athlete_count,
             average_heartrate,
-            distance,
-            elapsed_time,
+            distance /1609.34,
+            elapsed_time /60,
             kudos_count,
             max_heartrate,
             name,
             start_date,
-            total_elevation_gain,
+            total_elevation_gain * 3.28,
             total_photo_count,
             type
           ]
@@ -92,7 +92,9 @@ router.get('/', async (req, res) => {
       minDist,
       maxDist,
       minElev,
-      maxElev
+      maxElev,
+      minKud,
+      maxKud,
     } = req.query;
 
     let query = `
@@ -141,6 +143,16 @@ router.get('/', async (req, res) => {
     queryParams.push(maxElev);
     query += ` AND total_elevation_gain <= $${queryParams.length}`;
     }
+
+    if (minKud) {
+      queryParams.push(minKud);
+      query += ` AND kudos_count >= $${queryParams.length}`;
+      }
+
+    if (maxKud) {
+      queryParams.push(maxKud);
+      query += ` AND kudos_count <= $${queryParams.length}`;
+      }
 
     try {
     const client = await pool.connect();

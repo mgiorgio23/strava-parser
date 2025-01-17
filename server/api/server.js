@@ -32,21 +32,23 @@ app.set('view engine','ejs')
 
 const userRouter = require('./users');
 const activityRouter = require('./activities')
+const analysisRouter = require('./analyze')
 
 app.use('/users', userRouter);
 app.use('/activities', activityRouter);
+app.use('/analyze', analysisRouter);
 
 app.get("/", (req, res) => {
     res.json({ message: "Hello from Express!" });
   });
 
-  if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
-    });
-  };
-
- module.exports = app
+  // if (process.env.NODE_ENV !== 'production') {
+  //   app.listen(PORT, () => {
+  //     console.log(`Server listening on port ${PORT}`);
+  //   });
+  // };
+app.listen(PORT, () => console.log("Listening to port " + PORT));
+module.exports = app
 
 
 

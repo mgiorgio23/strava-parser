@@ -1,3 +1,7 @@
+.instructions {
+    text-align: left;
+  }
+
 .submit-cID {
     background-color: #4CAF50;
     color: white;
@@ -5,4 +9,47 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: left
 }
+
+.submit-button:hover {
+    background-color: #0056b3;
+  }
+
+.form-container {
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    gap: 15px; /* Space between form groups */
+    max-width: 400px; /* Optional: Limit the width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column; /* Align label and input vertically */
+  }
+
+  label {
+    width: 150px; /* Fixed width for labels */
+    font-weight: bold; /* Optional: Make labels bold */
+  }
+  
+  input {
+    flex: 1; /* Allow input to take remaining space */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in element's total width */
+  }
+
+.instruct-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+

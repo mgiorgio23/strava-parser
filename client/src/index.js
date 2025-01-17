@@ -6,13 +6,15 @@ import Instructions from './pages/instruct';
 import NotFound from './pages/404';
 import Results from './pages/results-page'
 import reportWebVitals from './reportWebVitals';
+import Navbar from './components/navbar'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Route path='' element={<Home />}/>
+        <Route path='/' element={<Home />}/>
         <Route path='/instructions' element={<Instructions />}/>
         <Route path='/results' element={<Results />}/>
         <Route path='*' element={<NotFound />}/>

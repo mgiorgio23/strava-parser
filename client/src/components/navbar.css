@@ -1,0 +1,29 @@
+.navbar-container {
+    display: flex;
+    justify-content: center; /* Center the navbar horizontally */
+    align-items: center; /* Center the navbar vertically if needed */
+    width: 100%;
+    position: fixed; /* Fix the navbar at the top */
+    top: 0;
+    background-color: #f8f9fa; /* Background color for the navbar */
+    padding: 10px 0; /* Padding for spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    z-index: 1000; /* Ensure the navbar is above other content */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: center;
+    gap: 100px; /* Space between navbar items */
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    color: #000000; /* Text color */
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .navbar-link:hover {
+    color: #007bff; /* Hover color */
+  }

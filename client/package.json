@@ -2,20 +2,23 @@
   "name": "strava-parser",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:3001",
+  "proxy": "http://localhost:3001",
   "dependencies": {
+    "chart.js": "^4.4.7",
+    "child_process": "^1.0.2",
     "cra-template": "1.2.0",
     "crypto-browserify": "^3.12.1",
     "express": "^4.21.2",
     "pg": "^8.13.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-client": "react-scripts start",
+    "build": "react-scripts build && (../server && npm install)",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

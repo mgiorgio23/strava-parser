@@ -1,6 +1,5 @@
 'use-client'
-import strava_btn from './strava-orange.svg';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import './instruct.css'
 
@@ -9,7 +8,9 @@ function Instructions() {
   const [secret, setSecret] = useState("");
   const [refresh, setRefresh] = useState("");
   const [code, setCode] = useState("");
-
+  console.log(cID)
+  console.log(secret)
+  console.log(refresh)
   const apiUrl = process.env.REACT_APP_API_URL;
 
   console.log(apiUrl)
@@ -19,7 +20,7 @@ function Instructions() {
   };
 
   const getData = (access_token) => {
-    const act_link = `https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}&per_page=200&page=1`;
+    const act_link = `https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}&per_page=200&page=13cd`;
   
     fetch(act_link)
       .then((res) => res.json())
@@ -63,12 +64,12 @@ function Instructions() {
     const authUrl = "https://www.strava.com/oauth/token";
 
     const payload = {
-      client_id: 143040,
-      client_secret: "aba2ae5a34d514c6c4cfb0dd5f91257e01221bf6",
-      refresh_token: "998d549eaca092e97a37e3d2164d2116d3219e5a",
+      client_id: cID,
+      client_secret: 'a9fc58d18d2397cc49c8ba852d572403dc1cfe3b',
+      refresh_token: '6c198f1d1e0602d4bb1c5b92f51b332ddc487e66',
       grant_type: "refresh_token",
     };
-    // console.log(payload);
+    console.log(payload)
     fetch(authUrl, {
       method:'POST',
       headers: {
@@ -128,46 +129,84 @@ function Instructions() {
     .then(data => console.log(data))    
   };
 
-  const getStoredData = () => {
-    const value = sessionStorage.getItem('activities');
-    // console.log(JSON.parse(value))
-  };
-
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="instructions">
+      <header className="instruct-header">
+        <h2 style={{paddingTop:'20px'}}>Instructions</h2>
         <p>
-          1. Log in or create a Strava account <a href="https://www.strava.com/login" target='_blank'>here.</a> <br />
-          2. Submit an API Application <a href="https://www.strava.com/settings/api" target='_blank'>here</a> <br />
-          3. Enter your Client ID below
+          First-time users follow steps 1-3 below. Otherwise, skip to step 4.
         </p>
-        <label>
-          Client ID: 
-          <input id="cID" type='number' value={cID} onChange={(e) => setcID(e.target.value)}></input>
-          <button className='submit-cID' id="submit-cID" onClick={() => getTokens(cID)}>Enter</button>
-        </label>
-        <label>
-          Client Secret: 
-          <input id="cSecret" type='text' value={secret} maxLength="30" onChange={(e) => setSecret(e.target.value)}></input>
-        </label>
-        <label>
-          Refresh Token: 
-          <input id="cID" type='text' value={refresh} maxLength="30" onChange={(e) => setRefresh(e.target.value)}></input>
-        </label>
-        <label>
-          Code: 
-          <input id="cID" type='text' value={code} maxLength="60" onChange={(e) => setCode(e.target.value)}></input>
-        </label>
-        <button className='submit-cID' id="submit-cID" onClick={() => getRefresh()}> Enter</button>
-        <p>
-          4. Collect the data:
-        </p>
-        <button type="submit" onClick={reAuthorize}> Get Data</button>
-        {/* TODO: Change the target to same page if successful collection of data */}
-
+        <ol>
+          <li>
+            Log in or create a Strava account{' '}
+            <a href="https://www.strava.com/login" target="_blank" rel="noopener noreferrer">
+              here
+            </a>.
+          </li>
+          <li>
+            Submit an API Application{' '}
+            <a href="https://www.strava.com/settings/api" target="_blank" rel="noopener noreferrer">
+              here
+            </a>.
+          </li>
+          <li>Enter your Client ID below:</li>
+        </ol>
+        <form className="form-container">
+          <div className="form-group">
+            <label htmlFor="clientID">Client ID:</label>
+            <input
+              id="clientID"
+              type="number"
+              value={cID}
+              onChange={(e) => setcID(e.target.value)}
+            />
+            <button type="button" className="submit-button" onClick={() => getTokens(cID)}>
+              Submit Client ID
+            </button>
+            
+          </div>
+          <div className="form-group">
+            <label htmlFor="clientSecret">Client Secret:</label>
+            <input
+              id="clientSecret"
+              type="text"
+              value={secret}
+              maxLength="30"
+              onChange={(e) => setSecret(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="refreshToken">Refresh Token:</label>
+            <input
+              id="refreshToken"
+              type="text"
+              value={refresh}
+              maxLength="30"
+              onChange={(e) => setRefresh(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="code">Code:</label>
+            <input
+              id="code"
+              type="text"
+              value={code}
+              maxLength="60"
+              onChange={(e) => setCode(e.target.value)}
+            />
+          </div>
+          <button type="button" className="submit-button" onClick={getRefresh}>
+            Submit Refresh Token
+          </button>
+        </form>
+        <p>4. Collect the data:</p>
+        <button type="button" className="data-button" onClick={reAuthorize}>
+          Get Data
+        </button>
       </header>
     </div>
   );
 }
+
 
 export default Instructions;
