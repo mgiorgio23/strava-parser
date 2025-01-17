@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require('cors');
+const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 
@@ -40,7 +41,7 @@ app.use('/analyze', analysisRouter);
 
 app.get("/*", function (req, res) {
   res.sendFile(
-    path.join(__dirname, "../client/build/index.html"),
+    path.join(__dirname, "../../client/build/index.html"),
     function(err) {
       if (err) {
         res.status(500).send(err);
