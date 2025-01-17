@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.869f7477.css",
-    "main.js": "/static/js/main.e4b64c9e.js",
+    "main.css": "/static/css/main.dc9b3886.css",
+    "main.js": "/static/js/main.5223dc9b.js",
     "static/js/488.e5b6a786.chunk.js": "/static/js/488.e5b6a786.chunk.js",
     "static/media/strava-orange.svg": "/static/media/strava-orange.d61a51baedcfa2ed12801e956175a0ba.svg",
     "index.html": "/index.html",
-    "main.869f7477.css.map": "/static/css/main.869f7477.css.map",
-    "main.e4b64c9e.js.map": "/static/js/main.e4b64c9e.js.map",
+    "main.dc9b3886.css.map": "/static/css/main.dc9b3886.css.map",
+    "main.5223dc9b.js.map": "/static/js/main.5223dc9b.js.map",
     "488.e5b6a786.chunk.js.map": "/static/js/488.e5b6a786.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.869f7477.css",
-    "static/js/main.e4b64c9e.js"
+    "static/css/main.dc9b3886.css",
+    "static/js/main.5223dc9b.js"
   ]
 }
