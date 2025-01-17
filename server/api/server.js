@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 const allowedOrigins = [
-  'https://strava-client.vercel.app',
   'http://localhost:3000',
-  'http://localhost:3001'
+  'http://localhost:3001',
+  'https://strava-parser-1570d5456a14.herokuapp.com'
 ];
 
 app.use(express.json());
