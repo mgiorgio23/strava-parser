@@ -1,7 +1,10 @@
 {
   "name": "strava",
   "version": "1.0.0",
-  "main": "index.js",
+  "engines": {
+    "node": "18.20",
+    "express": "4.21.2"
+  },
   "dependencies": {
     "chart.js": "^4.4.7",
     "immutable": "^3.8.2",
